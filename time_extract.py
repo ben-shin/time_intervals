@@ -29,13 +29,12 @@ def get_time_intervals(start_dir=5, end_dir=405):
     print(f"{'Directory':<10} | {'Elapsed (min)':<15} | {'Timestamp'}")
     print("-" * 45)
     
-    for i in sorted(time_data.keys()):
+for i in sorted(time_data.keys()):
         diff = time_data[i] - t0
-        minutes = diff.total_seconds() / 60.0
-        intervals[i] = minutes
-        print(f"{i:<10} | {minutes:<15.2f} | {time_data[i]}")
+        seconds_dict[i] = int(diff.total_seconds())
         
-    return intervals
+    return seconds_dict
 
-if __name__ == "__main__":
-    intervals = get_time_intervals()
+elapsed_times = get_elapsed_seconds()
+for d, s in elapsed_times.items():
+    print(f"Directory {d}: {s} seconds")
